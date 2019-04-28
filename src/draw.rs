@@ -261,14 +261,19 @@ fn gen_lyric_line(
             _ => continue,
         };
 
-        // note is current note or allready played
+        // note is current note or already played
         if beat >= start as f32 {
-            // note is current note -> hightlight it
+            // note is current note -> highlight it
             if (start + duration) as f32 >= beat {
+                // except the whitespace
+                let whitespace: String = text.chars().take_while(|x| x.is_whitespace()).collect();
+                let syllable: String = text.chars().skip_while(|x| x.is_whitespace()).collect();
                 if note_type == NoteType::Golden {
-                    lyric.push_str(&text.black().on_bright_yellow().to_string());
+                    lyric.push_str(&whitespace.black().to_string());
+                    lyric.push_str(&syllable.black().on_bright_yellow().to_string());
                 } else {
-                    lyric.push_str(&text.black().on_bright_white().to_string());
+                    lyric.push_str(&whitespace.black().to_string());
+                    lyric.push_str(&syllable.black().on_bright_white().to_string());
                 }
             }
             // note has been played
