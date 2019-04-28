@@ -8,7 +8,7 @@ fn do_autocorrelation_with_freq(samples: &[f32], sample_rate: f64, freq: f64) ->
     1.0 - accum_dist as f64 / samples.len() as f64
 }
 
-fn get_note_wieghts(samples: &[f32], sample_rate: f64) -> Vec<(LetterOctave, f64)> {
+fn get_note_weights(samples: &[f32], sample_rate: f64) -> Vec<(LetterOctave, f64)> {
     let first_tone = LetterOctave(Letter::C, 2);
     let last_tone = LetterOctave(Letter::A, 5);
 
@@ -31,7 +31,7 @@ fn get_note_wieghts(samples: &[f32], sample_rate: f64) -> Vec<(LetterOctave, f64
 }
 
 pub fn get_dominant_note(samples: &[f32], sample_rate: f64) -> LetterOctave {
-    get_note_wieghts(samples, sample_rate)
+    get_note_weights(samples, sample_rate)
         .iter()
         .fold(
             (LetterOctave(Letter::C, 2), -1.0),

@@ -35,21 +35,15 @@ fn draw_notelines(line: &ultrastar_txt::Line, beat: f32, term_width: u16) -> Res
         match note {
             &ultrastar_txt::Note::Regular {
                 start,
-                duration: _,
-                pitch: _,
-                text: _,
+                ..
             } => start,
             &ultrastar_txt::Note::Golden {
                 start,
-                duration: _,
-                pitch: _,
-                text: _,
+                ..
             } => start,
             &ultrastar_txt::Note::Freestyle {
                 start,
-                duration: _,
-                pitch: _,
-                text: _,
+                ..
             } => start,
             &ultrastar_txt::Note::PlayerChange { player: _ } => 0, // TODO: this is bad find better solution
         }
@@ -62,20 +56,17 @@ fn draw_notelines(line: &ultrastar_txt::Line, beat: f32, term_width: u16) -> Res
             &ultrastar_txt::Note::Regular {
                 start,
                 duration,
-                pitch: _,
-                text: _,
+                ..
             } => start + duration,
             &ultrastar_txt::Note::Golden {
                 start,
                 duration,
-                pitch: _,
-                text: _,
+                ..
             } => start + duration,
             &ultrastar_txt::Note::Freestyle {
                 start,
                 duration,
-                pitch: _,
-                text: _,
+                ..
             } => start + duration,
             &ultrastar_txt::Note::PlayerChange { player: _ } => 0, // TODO: this is bad find better solution
         }
@@ -210,22 +201,16 @@ fn line_to_str(line: &ultrastar_txt::Line) -> String {
     for note in line.notes.iter() {
         match note {
             &ultrastar_txt::Note::Regular {
-                start: _,
-                duration: _,
-                pitch: _,
                 ref text,
+                ..
             } => line_str.push_str(text),
             &ultrastar_txt::Note::Golden {
-                start: _,
-                duration: _,
-                pitch: _,
                 ref text,
+                ..
             } => line_str.push_str(text),
             &ultrastar_txt::Note::Freestyle {
-                start: _,
-                duration: _,
-                pitch: _,
                 ref text,
+                ..
             } => line_str.push_str(text),
             _ => continue,
         };
